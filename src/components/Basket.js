@@ -3,8 +3,8 @@ import React from 'react';
 export default function Basket(props) {
   const { cartItems, onAdd, onRemove } = props;
   const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
-  const discountPrice = cartItems.reduce((a, c) => c.price, 0);
-  const totalPrice = itemsPrice - discountPrice ;
+  const shippingPrice = itemsPrice > 2000 ? 0 : 20;
+  const totalPrice = itemsPrice + shippingPrice;
 
   return (
     <aside className="block col-1" id="namecart">
@@ -37,9 +37,10 @@ export default function Basket(props) {
               <div className="col-1 text-right">฿{itemsPrice.toFixed(2)}</div>
             </div>
             <div className="row">
-              <div className="col-2">ส่วนลด</div>
-              <div className="col-1 text-right">฿{discountPrice.toFixed(2)}</div>
+              <div className="col-2">ค่าส่ง</div>
+              <div className="col-1 text-right">฿{shippingPrice.toFixed(2)}</div>
             </div>
+
             <div className="row">
               <div className="col-2">
                 <strong>ยอดรวม</strong>
